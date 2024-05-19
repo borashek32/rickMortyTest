@@ -66,6 +66,7 @@ onMounted(fetchingCharacters);
               id="filter"
               v-model="status"
             >
+              <option disabled>Выберите статус</option>
               <option   
                 v-for="status in statuses"  
                 :key="status"  
@@ -108,14 +109,16 @@ onMounted(fetchingCharacters);
     </main>
   
     <footer>
-      <button
-        class="pageWrapper"
-        v-for="page in totalPages"
-        :key="page"
-        @click="setPage(page)"
-      >
-        {{ page }}
-      </button>
+      <div class="pagination">
+        <button
+          class="buttonWrapper"
+          v-for="page in totalPages"
+          :key="page"
+          @click="setPage(page)"
+        >
+          <p>{{ page }}</p>
+        </button>
+      </div>
     </footer>
   </div>
 </template>
@@ -225,19 +228,31 @@ footer {
   align-items: center;
   gap: 10px;
 }
-.pageWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
+footer {    
+  background: rgb(32, 35, 41);
+  height: 200px;
+  width: 100vw;
+  padding: 20px;
 }
-footer {
+.pagination {
+  width: 600px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 400px;
-  padding: 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.buttonWrapper p {
+  font-weight: 800px;
+  font-size: 20px;
 }
 </style>
